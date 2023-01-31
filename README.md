@@ -23,3 +23,13 @@ to start http test for all routes
 ## `php artisan serve`
 
 to start the server on http://127.0.0.1:8000
+
+# Available Endpoints
+
+| Method | Endpoint                | Body            | Authorization |
+| ------ | ----------------------- | --------------- | ------------- |
+| POST   | /api/register           | email, password | None          |
+| POST   | /api/login              | email, password | None          |
+| POST   | /api/order/{product_id} | quantity        | Bearer Token  |
+| GET    | /api/products           | None            | Bearer Token  |
+| DELETE | /api/logout             | None            | Bearer Token  |
