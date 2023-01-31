@@ -20,7 +20,7 @@ Route::post('/login', [Authentication::class, 'login'])->name('login');
 
 // Route::middleware('auth:sanctum')->post('/order', [Order::class, 'create']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
-  Route::post('/order', [Order::class, 'create']);
+  Route::post('/order/{product_id}', [Order::class, 'create'])->whereNumber(['product_id']);
   Route::get('/products', [Product::class, 'list']);
   Route::delete('/logout', [Authentication::class, 'logout']);
 });

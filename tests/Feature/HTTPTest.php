@@ -95,10 +95,12 @@ class HTTPTest extends TestCase
 
     public function test_make_order_with_authentication()
     {
-        $response = $this->get('/api/products', [
-            'Accept' => 'application/json',
-            'Authorization' => "Bearer 123"
-        ]);
+        $response = $this->post('/api/order/1', [
+            'quantity' => 'One',
+        ], [
+                'Accept' => 'application/json',
+                'Authorization' => "Bearer 123"
+            ]);
 
         $response->assertStatus(401);
     }
@@ -116,9 +118,8 @@ class HTTPTest extends TestCase
         $decode = json_decode($for_token->content());
         $access_token = $decode->access_token;
 
-        $response = $this->post('/api/order', [
+        $response = $this->post('/api/order/1', [
             'quantity' => 'One',
-            'production_ID' => ''
         ], [
                 'Accept' => 'application/json',
                 'Authorization' => "Bearer $access_token"
@@ -140,9 +141,8 @@ class HTTPTest extends TestCase
         $decode = json_decode($for_token->content());
         $access_token = $decode->access_token;
 
-        $response = $this->post('/api/order', [
+        $response = $this->post('/api/order/20', [
             'quantity' => 1,
-            'product_id' => 23
         ], [
                 'Accept' => 'application/json',
                 'Authorization' => "Bearer $access_token"
@@ -165,9 +165,8 @@ class HTTPTest extends TestCase
         $decode = json_decode($for_token->content());
         $access_token = $decode->access_token;
 
-        $response = $this->post('/api/order', [
+        $response = $this->post('/api/order/4', [
             'quantity' => 1,
-            'product_id' => 4
         ], [
                 'Accept' => 'application/json',
                 'Authorization' => "Bearer $access_token"
@@ -189,9 +188,8 @@ class HTTPTest extends TestCase
         $decode = json_decode($for_token->content());
         $access_token = $decode->access_token;
 
-        $response = $this->post('/api/order', [
+        $response = $this->post('/api/order/1', [
             'quantity' => 1,
-            'product_id' => 1
         ], [
                 'Accept' => 'application/json',
                 'Authorization' => "Bearer $access_token"
